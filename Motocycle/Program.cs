@@ -22,7 +22,7 @@ namespace Motocycle
             for (int m = 0; m < 3;  m++)
             {
                 motocycles[m] = new Motocycle();
-                engines[m] = new Engine();
+                motocycles[m].engine = new Engine();
                 motocycles[m].num = m + 1;
                 motocycles[m].serialNum = Guid.NewGuid();
                 motocycles[m].issueYear = DateTime.Now.Year;
