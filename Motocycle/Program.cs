@@ -8,10 +8,10 @@ namespace Motocycle
         static Engine[] engines;
         
 
-        static void PrintMoto(Motocycle motocycle, Engine engine)
+        static void PrintMoto(Motocycle motocycle)
         {
             Console.WriteLine("{6}. Мотоцикл(Производитель): {0}, Модель: {1}, Идентификатор: {2}, Год: {3}\n{6}.1 Двигатель(Объём): {4}, Мощьность: {5}",
-                motocycle.producer, motocycle.model, motocycle.serialNum, motocycle.issueYear, engine.volume, engine.power, motocycle.num);
+                motocycle.producer, motocycle.model, motocycle.serialNum, motocycle.issueYear, motocycle.engine.volume, motocycle.engine.power, motocycle.num);
         }
 
         static void Main(string[] args)
@@ -33,15 +33,12 @@ namespace Motocycle
                 Console.WriteLine("Укажите пробег мотоцикла");
                 motocycles[m].milage = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("Укажите объём двигателя");
-                engines[m].volume = Convert.ToInt32(Console.ReadLine());
+                motocycles[m].engine.volume = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("Укажите мощность двигателя");
-                engines[m].power = Convert.ToInt32(Console.ReadLine());
+                motocycles[m].engine.power = Convert.ToInt32(Console.ReadLine());
             }
-
-            PrintMoto(motocycles[0], engines[0]);
-            PrintMoto(motocycles[1], engines[1]);
-            PrintMoto(motocycles[2], engines[2]);
-
+            for (int i = 0; i < 3; i++) PrintMoto(motocycles[i]);
+           
         }
     }
 
