@@ -5,37 +5,43 @@ namespace Motocycle
     class Program
     {
         static Motocycle[] motocycles;
+        static Engine[] engines;
         
-        static void PrintMoto(Motocycle motocycle) 
+
+        static void PrintMoto(Motocycle motocycle, Engine engine)
         {
             Console.WriteLine("{6}. Мотоцикл(Производитель): {0}, Модель: {1}, Идентификатор: {2}, Год: {3}\n{6}.1 Двигатель(Объём): {4}, Мощьность: {5}",
-                motocycle.producer, motocycle.model, motocycle.serialNum, motocycle.issueYear, motocycle.Engine.volume, motocycle.Engine.power, motocycle.num)
+                motocycle.producer, motocycle.model, motocycle.serialNum, motocycle.issueYear, engine.volume, engine.power, motocycle.num);
         }
 
         static void Main(string[] args)
         {
             motocycles = new Motocycle[3];
-            foreach(int m in motocycles)
+            engines = new Engine[3];
+            
+            for (int m = 0; m < 3;  m++)
             {
                 motocycles[m] = new Motocycle();
+                engines[m] = new Engine();
                 motocycles[m].num = m + 1;
-                readonly motocycles[m].serialNum = new Guid();
+                motocycles[m].serialNum = Guid.NewGuid();
                 motocycles[m].issueYear = DateTime.Now.Year;
                 Console.WriteLine("Укажите модель мотоцикла");
                 motocycles[m].model = Console.ReadLine();
                 Console.WriteLine("Укажите производителя мотоцикла");
                 motocycles[m].producer = Console.ReadLine();
                 Console.WriteLine("Укажите пробег мотоцикла");
-                motocycles[m].milage = Console.ReadLine();
+                motocycles[m].milage = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("Укажите объём двигателя");
-                motocycles[m].Engine.volume = Console.ReadLine();
+                engines[m].volume = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("Укажите мощность двигателя");
-                motocycles[m].Engine.power = Console.ReadLine();
+                engines[m].power = Convert.ToInt32(Console.ReadLine());
             }
 
-            PrintMoto(motocycles[0]);
-            PrintMoto(motocycles[1]);
-            PrintMoto(motocycles[2]);
+            PrintMoto(motocycles[0], engines[0]);
+            PrintMoto(motocycles[1], engines[1]);
+            PrintMoto(motocycles[2], engines[2]);
+
         }
     }
 
@@ -47,6 +53,7 @@ namespace Motocycle
         internal int issueYear = DateTime.Now.Year;
         internal int milage;
         internal int num;
+        internal Engine engine;
     
         
        
@@ -56,10 +63,10 @@ namespace Motocycle
             
         }
 
-        internal class Engine
-        {
-            internal int volume;
-            internal int power;
-        }
+    }
+    class Engine
+    {
+        internal int volume;
+        internal int power;
     }
 }
